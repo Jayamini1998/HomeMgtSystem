@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page 2</title>
+</head>
+<body>
+    <select id="dropdown">
+        <option value="">Select Button Value</option>
+    </select>
+
+    <script>
+        // Function to extract URL parameters by name
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return "";
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        // Retrieve the selected button value from the URL parameter
+        var buttonValue = getParameterByName("buttonValue");
+
+        // Autofill the dropdown menu with the button value
+        if (buttonValue) {
+            var dropdown = document.getElementById("dropdown");
+            var option = document.createElement("option");
+            option.text = buttonValue;
+            option.value = buttonValue;
+            dropdown.appendChild(option);
+            // Optionally, you can add more options here.
+        }
+    </script>
+</body>
+</html>
